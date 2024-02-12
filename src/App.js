@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Formulario from './components/formulario';
 import Table from './components/tabla';
 import './App.css';
 
 export default function App() {
+  const [formUser,setFormUser]=useState([]);
+  const [msg,setMsg]=useState('');
+
   const [rows, setRows] = useState([]);
   const [id,setId]=useState(1);
-  const handleFormSubmit = (event) => {
+
+  //tomar datos del formulario y mandarlos a back
+  const handleFormSubmit = async (event) => {
     setId(id+1);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -15,13 +21,25 @@ export default function App() {
     const stateRow=true;
     const userId=id;
     const newRow={userName,userCel,stateRow,userId};
+    
+    setFormUser([...formUser,{
+      username:userName,
+      userphone:userCel
+    }]);
+    try {
+      const responseUser=await axios.post(`/insertUser`,formUser);
 
+      setMsg(responseUser.data.msg);
+    } catch (e) {
+      console.log('error al enviar datos `${e}`');
+    }
     //setFormData({
       //name: formDataFromEvent.get('userName'),
      // phone: formDataFromEvent.get('phone')
     //});
     setRows([...rows, newRow]);
     console.log(stateRow);
+
   };
 
   return (
