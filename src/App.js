@@ -5,6 +5,8 @@ import Table from './components/tabla';
 import './App.css';
 
 export default function App() {
+
+  axios.defaults.baseURL = "http://localhost:8080";
   const [formUser,setFormUser]=useState([]);
   const [msg,setMsg]=useState('');
 
@@ -23,13 +25,13 @@ export default function App() {
     const newRow={userName,userCel,stateRow,userId};
     
     setFormUser([...formUser,{
-      username:userName,
-      userphone:userCel
+      userName:userName,
+      userPhone:userCel
     }]);
     try {
       const responseUser=await axios.post(`/insertUser`,formUser);
 
-      setMsg(responseUser.data.msg);
+      setMsg(responseUser.data.message);
     } catch (e) {
       console.log('error al enviar datos `${e}`');
     }
