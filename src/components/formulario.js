@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import React from 'react';
+import Swal from 'sweetalert2';
 
 export default function Formulario() {
     axios.defaults.baseURL = "http://localhost:8080";
@@ -21,7 +22,13 @@ export default function Formulario() {
       event.preventDefault();
       try {
         const response=await axios.post(`/insertUser`,formUser);
-        console.log('Respuesta del servidor:', response.data);
+        const mensaje=response.data.message;
+        console.log('Respuesta del servidor:', mensaje);
+        Swal.fire({
+            title: 'Éxito',
+            text: mensaje,
+            icon: 'success'
+        });
       } catch (e) {
         console.log('error al enviar datos `${e}`');
       }

@@ -38,7 +38,9 @@ export default function ButtonUp({ userId, userName,userPhone }) {
                 console.log(error);
             }
         }
-
+       
+        window.location.reload();
+        
     };
 
     return (

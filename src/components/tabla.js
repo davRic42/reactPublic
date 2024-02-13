@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import ButtonDel from "./btndel";
 import ButtonUp from "./btnupd";
 import axios from "axios";

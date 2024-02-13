@@ -30,6 +30,7 @@ export default function ButtonDel({userId}){
         } catch(e){
             console.log(`error en la peticion '${e}'`);
         }
+        window.location.reload();
     };
 
     return(
