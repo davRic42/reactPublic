@@ -4,14 +4,14 @@ import ButtonUp from "./btnupd";
 import axios from "axios";
 
 export function Rows() {
-    const [data, setData] = useState([]);
+    const [Data, setData] = useState([]);
     const [shouldUpdate, setShouldUpdate] = useState(false);
+    const [loading, setLoading] = useState(false);
   
     const fetchData = async () => {
         try {
             const response = await axios.get("/user");
-
-            setData(response.data);
+            setData(response.data[0]);
 
         } catch (error) {
             console.error("Error al obtener los datos:", error);
@@ -26,12 +26,10 @@ export function Rows() {
 
 
     }, [shouldUpdate]);
-    console.log(data);
     return (
         <>
-        
-            {data.map((datos) => 
-                <tr >
+            {Data.map((datos) => (
+                <tr>
                     <td>{datos.userId}</td>
                     <td>{datos.userName}</td>
                     <td>{datos.userPhone}</td>
@@ -42,7 +40,7 @@ export function Rows() {
                         <ButtonUp userId={datos} />
                     </td>
                 </tr>
-            )}
+            ))}
         </>
     );
 }
