@@ -24,18 +24,31 @@ export default function Formulario() {
         const response=await axios.post(`/insertUser`,formUser);
         const mensaje=response.data.message;
         console.log('Respuesta del servidor:', mensaje);
+        /*
         Swal.fire({
             title: 'Éxito',
             text: mensaje,
             icon: 'success'
-        });
+            
+        });*/
+        Swal.fire({
+            title: "Èxito",
+            text: mensaje,
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "ok"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.reload();
+            }
+          });
       } catch (e) {
         console.log('error al enviar datos `${e}`');
       }
     }
 
     return (
-        <div className="container-fluid mt-5 ">   
+        <div className="container-fluid mt-5 w-50 p-3 ">   
             <section>
                 <h2>Formulario</h2>
                 <form className="card border-primary mb-3 w-55" onSubmit={handleFormSubmit}>
