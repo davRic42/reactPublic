@@ -43,7 +43,7 @@ export function Rows() {
   );
 }
 
-export default function Table({ rows }) {
+export default function Table() {
   // Filtrar los usuarios con stateRow igual a 1
   //const filteredUsers = rows.filter((user) => user.stateRow === true);
 

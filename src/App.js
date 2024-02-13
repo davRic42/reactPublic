@@ -6,43 +6,7 @@ import './App.css';
 
 export default function App() {
 
-  axios.defaults.baseURL = "http://localhost:8080";
-  const [formUser,setFormUser]=useState([]);
-  const [msg,setMsg]=useState('');
 
-  const [rows, setRows] = useState([]);
-  const [id,setId]=useState(1);
-
-  //tomar datos del formulario y mandarlos a back
-  const handleFormSubmit = async (event) => {
-    setId(id+1);
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const userName=formData.get("userName");
-    const userCel=formData.get("phone");
-    const stateRow=true;
-    const userId=id;
-    const newRow={userName,userCel,stateRow,userId};
-    
-    setFormUser([...formUser,{
-      userName:userName,
-      userPhone:userCel
-    }]);
-    try {
-      const responseUser=await axios.post(`/insertUser`,formUser);
-
-      setMsg(responseUser.data.message);
-    } catch (e) {
-      console.log('error al enviar datos `${e}`');
-    }
-    //setFormData({
-      //name: formDataFromEvent.get('userName'),
-     // phone: formDataFromEvent.get('phone')
-    //});
-    setRows([...rows, newRow]);
-    console.log(stateRow);
-
-  };
 
   return (
     <div>
@@ -53,8 +17,8 @@ export default function App() {
       </header>
 
       <body>
-        <Formulario onSubmit={handleFormSubmit} />
-        <Table rows={rows} />
+        <Formulario />
+        <Table />
       </body>
     </div>
   );
