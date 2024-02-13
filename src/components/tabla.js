@@ -13,6 +13,7 @@ export function Rows() {
             const response = await axios.get("/user");
             setData(response.data[0]);
 
+            
         } catch (error) {
             console.error("Error al obtener los datos:", error);
         }
@@ -23,12 +24,11 @@ export function Rows() {
         fetchData();
         setShouldUpdate(false);
 
-
-
     }, [shouldUpdate]);
+    const filteredUsers = Data.filter((user) => user.userState === 1);
     return (
         <>
-            {Data.map((datos) => (
+            {filteredUsers.map((datos) => (
                 <tr>
                     <td>{datos.userId}</td>
                     <td>{datos.userName}</td>
@@ -37,7 +37,7 @@ export function Rows() {
                         <ButtonDel userId={datos.userId} />
                         <br />
                         <br />
-                        <ButtonUp userId={datos} />
+                        <ButtonUp userId={datos.userId} userName={datos.userName} userPhone={datos.userPhone}/>
                     </td>
                 </tr>
             ))}
@@ -46,9 +46,6 @@ export function Rows() {
 }
 
 export default function Table() {
-    // Filtrar los usuarios con stateRow igual a 1
-    //const filteredUsers = rows.filter((user) => user.stateRow === true);
-
     return (
         <div className="container-fluid p-4  mt-8 w-70">
             <table className="table table-hover">

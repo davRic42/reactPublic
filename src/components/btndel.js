@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function ButtonDel({userId}){
     const handleDelete = ()=>{
+        console.log(userId);
         Swal.fire({
             title: 'Eliminar usuario',
             text: '¿Estás seguro de que deseas eliminar este usuario?',
@@ -23,7 +24,8 @@ export default function ButtonDel({userId}){
 
     const deleteUser=async()=>{
         try{
-            const response=await axios.patch(`/deleteUser/${userId}`, );
+            const response=await axios.patch(`/deleteUser/${userId}`);
+            
             console.log(response);
         } catch(e){
             console.log(`error en la peticion '${e}'`);
