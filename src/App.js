@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Formulario from './components/formulario';
 import Table from './components/tabla';
+import Consult from './components/consult';
 import './App.css';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
 
       <body>
         <Formulario />
+        <Consult />
         <Table />
       </body>
     </div>
