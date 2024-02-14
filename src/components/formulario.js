@@ -62,7 +62,7 @@ export default function Formulario() {
                             onChange={handleChange} 
                             type='text'
                             name='userName'
-                            className='form-control w-50'
+                            className='form-control w-75'
                             placeholder='Ingrese su nombre' />
                         </div>
 
@@ -75,7 +75,7 @@ export default function Formulario() {
                             onChange={handleChange}  
                             type='number' 
                             value={formUser.userPhone}
-                            className='form-control w-50' 
+                            className='form-control w-75' 
                             placeholder='Ingrese su numero de telefono' />
                         </div>
 
